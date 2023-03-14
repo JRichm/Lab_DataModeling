@@ -1,0 +1,74 @@
+features:
+	• users can sign into the app with their email and password
+
+	• users can create recipes with ingredients and instructions
+
+	• recipes can be marked as public or private
+
+	• users can view other people’s recipes
+
+	• ingredients from recipes can be added to user’s grocery lists
+
+	• users can create their own occasions and assign recipes to occasions
+
+
+Brainstorming / table ideas
+	things that we need to keep track of for this app
+		• db that keeps track of users
+			this database will store data about the users
+			 - user id
+			 - email
+			 - password
+			 - username
+		
+		• db that keeps track of food
+			when adding items to 'grocery list', the app will pull from this list of items
+			 - id of food
+			 - name
+			 - price			
+		
+		• db that keeps track of recipes
+			 - user id REFERENCE user db
+			 - id of foods REFERENCE food db
+
+
+		• db that keeps track of occasions
+
+		• db that keeps track of grocery lists
+			 - user id REFERENCE user db
+
+
+
+columns
+	users
+	  - use_id SERIAL PRIMARY KEY, 		this is the number the app will use to keep track of each individual user
+	  - email VARCHAR			users email
+	  - password VARCHAR			users password
+	  - username VARCHAR			users username
+		
+	grocery lists
+	  - user_id INT REFERENCE 		each user will have one grocery list, this is referenced from the users table	
+	  - cart_item_1	INT			each grocery list will have a column for each item 
+	  - cart_item_2 INT             	we move this to a separate list as this could cause a messy users table
+	  - .
+	  - .
+
+	
+	food
+	  - food_id SERIAL PRIMARY KEY		each food item will have a unique id
+	  - name VARCHAR			name of food item
+	  - price INT				price of food in dollars
+
+	recipes
+	  - recipe_id SERIAL PRIMARY KEY	each recipe will ahve a unique id
+	  - author_id INT   			the author of the recipe, referenced from the users table
+	  - food_item_1	INT			just like the grocery list, each recipe will have a column for each item required to complete the recipe
+	  - food_item_2 INT
+	  - .
+ 	  - .
+
+	occasions
+	  - date SERIAL PRIMARY KEY		each occasion will have a date, this is the primary key
+	  - occasion_name VARCHAR		name of occasion
+	  - recipe id INT REFERENCE 		id of recipe, reference from the recipe table
+
